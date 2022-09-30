@@ -11,24 +11,14 @@
 </style>
 <body>
  
-{% block content %}
+
     <h1 class="title">
   Flask Login Example
 </h1>
     <h2 class="subtitle">
   Easy authentication and authorization in Flask.
-</h2> {% endblock %}
+</h2> 
     
-   <p>
-        {% with messages = get_flashed_messages() %} {% if messages %}
-        <ul class=flashes>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %} {% endwith %}
-    </p>
-
 <form method="post" action="/upload" enctype="multipart/form-data">
 
         <div class="box__input">

@@ -24,9 +24,12 @@ class HelloWorld(Resource):
 
 api.add_resource(HelloWorld,'/hello')
 
-@app.route('/upload')
-def upload_form():
-    return render_template('upload.html')
+class Upload(Resource):
+
+    def upload_form():
+        return render_template('upload.html')
+
+api.add_resource(Upload, '/upload')
 
 if __name__=='__main__':
     cfg_port = os.getenv('PORT', "5000")
