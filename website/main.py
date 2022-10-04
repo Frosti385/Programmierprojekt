@@ -2,7 +2,7 @@
 Test implementation of a Restful API for Uploading Images 
 """
 import os
-from flask import Flask, flash, request, redirect, render_template
+from flask import Flask, render_template #flash, request, redirect, render_template
 from flask_restful import Api, Resource
 
 app = Flask(__name__)
