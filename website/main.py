@@ -2,6 +2,7 @@
 Test implementation of a Restful API for Uploading Images 
 """
 import os
+import logging
 from flask import Flask, render_template, flash, request, redirect
 from config import *
 from flask_restful import Api, Resource
@@ -61,8 +62,8 @@ def upload_file():
             return redirect(request.url)
 
         files = request.files.getlist('files[]')
-        print(files)
-        print(upload_dest)  
+        #print(files)
+        logging.info(upload_dest)  
         for file in files:
             if file:              
                file.save(os.path.join(upload_dest, file.filename))
