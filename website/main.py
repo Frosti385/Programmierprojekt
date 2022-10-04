@@ -23,7 +23,7 @@ class HelloWorld(Resource):
 
         return data
 
-api.add_resource(HelloWorld,'/hello')
+api.add_resource(HelloWorld,'/')
 
 @app.route('/upload')
 def upload_form():
@@ -66,7 +66,7 @@ def upload_file():
             if file:              
                file.save(os.path.join(upload_dest, file.filename))
 
-        flash('Files uploaded')
+        #flash('Files uploaded')
         return redirect('/upload')
 
 
