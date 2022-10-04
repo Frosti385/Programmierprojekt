@@ -61,7 +61,8 @@ def upload_file():
             return redirect(request.url)
 
         files = request.files.getlist('files[]')
-
+        print(files)
+        print(upload_dest)  
         for file in files:
             if file:              
                file.save(os.path.join(upload_dest, file.filename))
