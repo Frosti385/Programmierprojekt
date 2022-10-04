@@ -61,7 +61,7 @@ def upload_file():
             return redirect(request.url)
 
         files = request.files.getlist('files[]')
-        #print(files)
+        print('Testprint')
 
         for file in files:
             if file:              
