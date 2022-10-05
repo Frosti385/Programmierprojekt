@@ -44,7 +44,7 @@ api.add_resource(HelloWorld,'/')
 def upload_form():
     return render_template('upload.php')
 
-
+"""
 class TrashDataset(Dataset):
 
                     def __init__(self, images):                      
@@ -58,7 +58,7 @@ class TrashDataset(Dataset):
                     def __getitem__(self):
                         return self.transform(self.images)
 
-
+"""
 ## on a POST request of data 
 @app.route('/upload', methods=['POST'])
 def upload_file():
