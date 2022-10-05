@@ -7,6 +7,7 @@ from flask import Flask, render_template, flash, request, redirect
 from config import *
 from flask_restful import Api, Resource
 
+"""
 import torch
 import torchvision
 from torch.utils.data import Dataset
@@ -14,7 +15,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 from torchvision import transforms
-
+"""
 
 app = Flask(__name__)
 
