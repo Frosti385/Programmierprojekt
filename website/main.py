@@ -58,7 +58,7 @@ class result(Resource):
 
         return data
 
-api.add_resource(result,'/')
+api.add_resource(result,'/result')
 
 
 """
