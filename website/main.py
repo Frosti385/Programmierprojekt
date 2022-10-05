@@ -2,7 +2,7 @@
 Test implementation of a Restful API for Uploading Images 
 """
 import os
-from github import Github
+#from github import Github
 from flask import Flask, render_template, flash, request, redirect
 from config import *
 from flask_restful import Api, Resource
@@ -20,8 +20,8 @@ app = Flask(__name__)
 
 api =   Api(app)
 
-github = Github('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')
-repository = github.get_user().get_repo('GithubTestProject2')
+#github = Github('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')
+#repository = github.get_user().get_repo('GithubTestProject2')
 
 
 class HelloWorld(Resource):
