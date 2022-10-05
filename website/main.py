@@ -108,7 +108,7 @@ def upload_file():
         
 
 
-        return redirect('/result')
+        return redirect('/upload')
 
 
 if __name__=='__main__':
