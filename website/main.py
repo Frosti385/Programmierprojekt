@@ -54,7 +54,7 @@ class result(Resource):
         Getter for hello world
         """
 
-        data= os.getcwd() 
+        data= os.path.join(os.getcwd(), '/uploads') 
 
         return data
 
