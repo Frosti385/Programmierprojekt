@@ -88,6 +88,7 @@ def upload_file():
                #f = repository.create_file(filename, "Test Commit", data2)
 
         #flash('Files uploaded')
+        print(os.getcwd())
         return redirect('/upload')
 
 
