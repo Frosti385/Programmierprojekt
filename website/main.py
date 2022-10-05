@@ -42,7 +42,8 @@ api.add_resource(HelloWorld,'/')
 
 @app.route('/upload')
 def upload_form():
-    return render_template('upload.php')
+    return render_template('upload.html')
+
 
 """
 class TrashDataset(Dataset):
