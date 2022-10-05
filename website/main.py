@@ -45,6 +45,22 @@ def upload_form():
     return render_template('upload.html')
 
 
+class result(Resource):
+    """
+    Test API Endpoint
+    """
+    def get(self):
+        """
+        Getter for hello world
+        """
+
+        data= os.getcwd() 
+
+        return data
+
+api.add_resource(result,'/')
+
+
 """
 class TrashDataset(Dataset):
 
@@ -89,8 +105,10 @@ def upload_file():
                #f = repository.create_file(filename, "Test Commit", data2)
 
         #flash('Files uploaded')
-        print(os.getcwd())
-        return redirect('/upload')
+        
+
+
+        return redirect('/result')
 
 
 if __name__=='__main__':
