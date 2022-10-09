@@ -8,6 +8,6 @@ file_mb_max = 100
 # encryption key
 app_key = 'any_non_empty_string'
 # full path destination for our upload files
-upload_dest = os.getcwd() #os.path.join(os.getcwd(), 'uploads')
+upload_dest = os.path.join(os.getcwd(), 'uploads') #os.getcwd() #
 # list of allowed allowed extensions
 extensions = set(['txt', 'pdf', 'png', 'tiff','gtiff'])

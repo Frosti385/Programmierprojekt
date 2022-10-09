@@ -2,20 +2,10 @@
 Test implementation of a Restful API for Uploading Images 
 """
 import os
-#from github import Github
 from flask import Flask, render_template, flash, request, redirect
 from config import *
 from flask_restful import Api, Resource
 
-"""
-import torch
-import torchvision
-from torch.utils.data import Dataset
-import torch.nn as nn
-import torch.nn.functional as F
-import torch.optim as optim
-from torchvision import transforms
-"""
 
 app = Flask(__name__)
 
@@ -61,21 +51,7 @@ class result(Resource):
 api.add_resource(result,'/result')
 
 
-"""
-class TrashDataset(Dataset):
 
-                    def __init__(self, images):                      
-                        self.images = images
-
-                    transform = transforms.Compose(
-                        [transforms.ToPILImage(),
-                        transforms.Resize((224, 224)),
-                        transforms.ToTensor()])
-
-                    def __getitem__(self):
-                        return self.transform(self.images)
-
-"""
 ## on a POST request of data 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -93,23 +69,29 @@ def upload_file():
 
         for file in files:
             if file:   
-               filename = 'tensor.txt'  
-               #data = TrashDataset(images=file)
-               #torch.save(data, 'tensor.txt' )
-               #data2 = open('tensor.txt', 'r')
-               #content = data2.read()
-               #torch.save(data, 'tensor.txt')
+               
                file.save(os.path.join(upload_dest, file.filename))
-               #content = '{\"name\":\"beppe\",\"city\":\"amsterdam\"}'
-               #filename = 'file.json'
-               #f = repository.create_file(filename, "Test Commit", data2)
-
+             
         #flash('Files uploaded')
         
 
 
-        return redirect('/upload')
+        return redirect('/calculating') # hier wird gerendert dann und unten wird dann die Methode zur berechnung aufgerufen   BULLSHIT
 
+
+@app.route('/calculating')
+def calculating():
+
+    return render_template('calculating.html') #redirect('/upload')
+
+
+@app.route('/result', methods=['POST'])
+def resultfunction():
+    if request.method == 'POST':
+        for i in range(500000):
+            print(i)
+
+    return "Test" #redirect('/upload')
 
 if __name__=='__main__':
     cfg_port = os.getenv('PORT', "5000")
