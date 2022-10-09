@@ -14,6 +14,7 @@ api =   Api(app)
 #github = Github('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')
 #repository = github.get_user().get_repo('GithubTestProject2')
 
+app.secret_key = app_key
 
 class HelloWorld(Resource):
     """
@@ -69,14 +70,17 @@ def upload_file():
 
         for file in files:
             if file:   
-               
-               file.save(os.path.join(upload_dest, file.filename))
-             
+                if(app.secret_key == user_code):
+                    file.save(os.path.join(upload_dest, file.filename))
+                    return redirect('/calculating')
+                else:
+                    print('Wrong passcode')
+                    return redirect('/upload')
         #flash('Files uploaded')
         
 
-
-        return redirect('/calculating') # hier wird gerendert dann und unten wird dann die Methode zur berechnung aufgerufen   BULLSHIT
+        return "false"
+         # hier wird gerendert dann und unten wird dann die Methode zur berechnung aufgerufen   BULLSHIT
 
 
 @app.route('/calculating')
