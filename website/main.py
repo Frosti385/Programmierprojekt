@@ -5,7 +5,7 @@ import os
 from flask import Flask, render_template, flash, request, redirect
 from config import *
 from flask_restful import Api, Resource
-import requests
+import requests 
 
 import torch
 import torchvision
