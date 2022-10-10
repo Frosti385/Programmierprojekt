@@ -3,3 +3,4 @@ Flask
 Flask-RESTful
 requests
 torch
+torchvision
