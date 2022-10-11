@@ -1,6 +1,5 @@
 # Programmierprojekt
 
-<<<<<<< HEAD
 HS Osnabrück - 5 Semester - Assessment for the module Programming Project
 
 ## Project description
@@ -42,7 +41,7 @@ URL to upload
 ## How to use
 (The token is given separately)
 
-1. git clone https://<given-github-token>@github.com/Frosti385/Programmierprojekt.git
+1. git clone https://github-token@github.com/Frosti385/Programmierprojekt.git
 1. pip install virtualenv
 1. python -m venv env
 1. .\evn\Scripts\activate
