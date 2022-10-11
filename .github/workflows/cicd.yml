@@ -41,7 +41,8 @@ jobs:
             git checkout CICD #only as long as this is not pushed to master
             pip install -r requirements.txt 
             cd website
-            python3 main.py # we reload the app 
+            pm2 delete main # we reload the app 
+            pm2 start main.py --interpreter=python3
 
 
 

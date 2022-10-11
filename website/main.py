@@ -42,9 +42,9 @@ class Net(nn.Module):
 
 model = Net()
 
-#URL = "https://netcase.hs-osnabrueck.de/index.php/s/hhmg0Df8GrrNlLo/download"
-#response = requests.get(URL)
-#open('./models/epoch.93_95.max', 'wb').write(response.content)
+URL = "https://netcase.hs-osnabrueck.de/index.php/s/hhmg0Df8GrrNlLo/download"
+response = requests.get(URL)
+open('./models/epoch.93_95.max', 'wb').write(response.content)
 
 app = Flask(__name__)
 
