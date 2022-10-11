@@ -16,7 +16,7 @@ TODO: Put link here
 ## Access via Frontend
 
 The frontend of this application is available via
-https://programmierprojekt.com
+TODO
 
 ## Deployment
 
