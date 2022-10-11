@@ -65,9 +65,3 @@ When the API starts, the pretrained network(resnet-152) and the trained epoch (m
 
 
 
-=======
-Nachfolgend werden Sachen gemacht#
-
-
-This is the first Test with VS_CODE
->>>>>>> ea8886f647fc9e1032eea8122a5e53e2cc9e8911
