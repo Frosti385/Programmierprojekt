@@ -1,0 +1,70 @@
+<html>
+  <body>
+    <h1>HS_Sem5_ProgrammingProject</h1>
+    <p>
+      HS Osnabrück - 5 Semester - Assessment for the module Programming Project
+    </p>
+    <h2 >Project description</h2>
+    <p>
+        The purpose of this project is to classify six caterogies of trash. The categories are cardboard, paper, glass, plastic and trash. 
+        To classify a picture of trash( only JPGs are allowed) uploaded via the website / API Endpoint a neural network is used. This neural network is based on resnet-152 a free to use pretrained neural network, which is used to preclassify the given image. Afterwards a much smaller network maps the result of the first network of the six trash categories and gives a prediction of the type of trash the picture displays.
+        Thanks to the pretrained network and tuning of this and the mapping network an accuracy of 95% (95,6%) is reached.
+    </p>
+    <p>
+      Further details can be found here
+      <!--<a href="https://www.kaggle.com/datasets/netflix-inc/netflix-prize-data"
+        >https://www.kaggle.com/datasets/netflix-inc/netflix-prize-data</a
+      >-->
+    </p>
+    <h2 >Project Management</h2>
+    <p>
+        The project is implemented in three sprints. Management is carried out via Jira.
+        TODO: Put link here
+        
+    </p>
+    <h2>Access via Frontend</h2>
+    <p>
+        The frontend of this application is available via
+        TODO
+    </p>
+    <h2>Deployment</h2>
+    <p>
+        The API is deployed via a CI/CD pipeline using github actions.
+        With the deployment of new changes the main python file is tested 
+        and afterwards pushed to the server 
+    </p>
+    <p>Both the linting and code validity is checked before doing so.</p>
+    <p>Only after the build step is completed the deploy step begins</p>
+    <p>The three relevant enpoints are as follows:</p>
+    
+    <h2>How to use</h2>
+    <p>(The token is given separately)</p>
+    <ol>
+      <li>
+        git clone
+        <a href="https://github-token@github.com/Frosti385/Programmierprojekt.git"
+          >https://github-token@github.com/Frosti385/Programmierprojekt.git</a
+        >
+      </li>
+      <li>pip install virtualenv</li>
+      <li>python -m venv env</li>
+      <li>.\evn\Scripts\activate</li>
+      <li>pip3 install -r .\requirements.txt</li>
+    </ol>
+    <h3">Run API</h3>
+    <ol>
+      <li>python .\main.py</li>
+    </ol>
+    <h3">Classify a picture</h3>
+    <p>(The passcode is given separately)</p>
+    <ol>
+      <li>Call the website (under the given URL on the server or if your are running the script locally under localhost:5000)</li>
+      <li>In the upload mask you need to type in the passcode to be able to upload a file</li>
+      <li>After selecting a JPG file of trash click the "Submit"- Button</li>
+      <li>You will be redirected to a loading page. </li>
+      <li>After the process of predicting is finished the type of trash
+          shown on the picture you will be redirected to the resultpage and your result is displayed
+      </li>
+    </ol>
+  </body>
+</html>

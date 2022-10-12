@@ -52,20 +52,9 @@ api =   Api(app)
 
 app.secret_key = app_key
 
-class HelloWorld(Resource):
-    """
-    Test API Endpoint
-    """
-    def get(self):
-        """
-        Getter for hello world
-        """
-
-        data={"data": "Hi there, Programming Project!"}
-
-        return data
-
-api.add_resource(HelloWorld,'/')
+@app.route('/')
+def index_form():
+    return render_template('index.html')
 
 @app.route('/upload')
 def upload_form():
@@ -133,6 +122,6 @@ def resultfunction():
         return(f"Der Müll auf dem Bild ist {classes[predicted]}")
 
 if __name__=='__main__':
-    cfg_port = os.getenv('PORT', "5000")
+    cfg_port = os.getenv('PORT', "80")
 
     app.run(host="0.0.0.0", port=cfg_port)
