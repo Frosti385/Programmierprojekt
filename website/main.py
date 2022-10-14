@@ -117,7 +117,6 @@ def resultfunction():
         model.eval()
         with torch.no_grad():
             inputs = try_image
-            inputs = inputs.cuda()
             inputs = inputs.unsqueeze(0)
             outputs = model(inputs)
             _, predicted = torch.max(outputs.data, 1)
