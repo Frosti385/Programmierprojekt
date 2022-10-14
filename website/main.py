@@ -95,31 +95,57 @@ def calculating():
 @app.route('/result', methods=['POST'])
 def resultfunction():
     if request.method == 'POST':
-        for i in range(200):
-            print(i)
+
+       
+       
         
-        path = filename
-        images = []
-        targets = [0]
-        image = torchvision.io.read_image(path)
-        images.append(image)
+        #path = filename
+        #images = []
+       # targets = [0]
+        #image = torchvision.io.read_image(path)
+        #images.append(image)
 
+        #classes = ['Glas', 'Papier', 'Pappe', 'Plastik', 'Metall', 'Müll']
+
+        #model = torch.load('./models/epoch.93_95.max', map_location='cpu')
+
+        #dataset = TrashDataset(images=images, targets=targets)
+        #loader = torch.utils.data.DataLoader(dataset, batch_size=1, shuffle=False, num_workers=0)
+
+        #model.eval()
+
+        #for data in loader:
+        #    targets, inputs = data
+        #outputs = model(inputs)
+       # _, predicted =torch.max(outputs.data,1)
+        #print(f"Der Müll auf dem Bild ist {classes[predicted]}")
+
+        #return(f"Der Müll auf dem Bild ist {classes[predicted]}")
+        
+       
         classes = ['Glas', 'Papier', 'Pappe', 'Plastik', 'Metall', 'Müll']
-
+        
+        
         model = torch.load('./models/epoch.93_95.max', map_location='cpu')
+       
+        
+        transform = transforms.Compose(
+            [transforms.ToPILImage(),
+            transforms.Resize((224, 224)),
+            transforms.ToTensor()])
 
-        dataset = TrashDataset(images=images, targets=targets)
-        loader = torch.utils.data.DataLoader(dataset, batch_size=1, shuffle=False, num_workers=0)
+
+        try_image = transform(torchvision.io.read_image(filename))
 
         model.eval()
+        with torch.no_grad():
+            inputs = try_image
+            inputs = inputs.cuda()
+            inputs = inputs.unsqueeze(0)
+            outputs = model(inputs)
+            _, predicted = torch.max(outputs.data, 1)
+            print("Müll auf dem Bild entspricht dem Typ " + classes[predicted])
 
-        for data in loader:
-            targets, inputs = data
-        outputs = model(inputs)
-        _, predicted =torch.max(outputs.data,1)
-        print(f"Der Müll auf dem Bild ist {classes[predicted]}")
-
-        return(f"Der Müll auf dem Bild ist {classes[predicted]}")
 
 if __name__=='__main__':
     cfg_port = os.getenv('PORT', "5000")
