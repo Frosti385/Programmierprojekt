@@ -138,8 +138,7 @@ def resultfunction():
                     "2" : out[2],
                     "3" : out[3],
                     "4" : out[4],
-                    "5" : out[5],
-                    "6" : "www.google.com"
+                    "5" : out[5]
                 }
             
             data = json.dumps(js)
