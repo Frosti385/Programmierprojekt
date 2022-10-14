@@ -90,27 +90,20 @@ def upload_file():
 @app.route('/calculating')
 def calculating():
 
-    return render_template('calculating.html') #redirect('/upload')
+    return render_template('calculating.html') 
 
 @app.route('/result', methods=['POST'])
 def resultfunction():
     if request.method == 'POST':
 
-       
-       
-
-       
         classes = ['Glas', 'Papier', 'Pappe', 'Plastik', 'Metall', 'Müll']
         
-        
         model = torch.load('./models/epoch.93_95.max', map_location='cpu')
-       
         
         transform = transforms.Compose(
             [transforms.ToPILImage(),
             transforms.Resize((224, 224)),
             transforms.ToTensor()])
-
 
         try_image = transform(torchvision.io.read_image(filename))
 
@@ -122,6 +115,7 @@ def resultfunction():
             _, predicted = torch.max(outputs.data, 1)
             print("Müll auf dem Bild entspricht dem Typ " + classes[predicted])
 
+    return(f"Müll auf dem Bild entspricht dem Typ " +classes[predicted])
 
 if __name__=='__main__':
     cfg_port = os.getenv('PORT', "5000")
