@@ -2,10 +2,11 @@
 Test implementation of a Restful API for Uploading Images 
 """
 import os
-from flask import Flask, render_template, flash, request, redirect
+from flask import Flask, render_template, flash, request, redirect, jsonify
 from config import *
 from flask_restful import Api, Resource
 import requests 
+import json
 
 import torch
 import torchvision
@@ -96,10 +97,15 @@ def calculating():
 def resultfunction():
     if request.method == 'POST':
 
-        classes = ['Glas', 'Papier', 'Pappe', 'Plastik', 'Metall', 'Müll']
+        out = ["","","","","",""]
+        classes = ['Glas', 'Papier', 'Pappe', 'Plastik', 'Metall', 'Muell']
         
+        net = Net()
+
         model = torch.load('./models/epoch.93_95.max', map_location='cpu')
+       
         
+
         transform = transforms.Compose(
             [transforms.ToPILImage(),
             transforms.Resize((224, 224)),
@@ -108,14 +114,42 @@ def resultfunction():
         try_image = transform(torchvision.io.read_image(filename))
 
         model.eval()
+
         with torch.no_grad():
             inputs = try_image
             inputs = inputs.unsqueeze(0)
             outputs = model(inputs)
-            _, predicted = torch.max(outputs.data, 1)
-            print("Müll auf dem Bild entspricht dem Typ " + classes[predicted])
-
-    return(f"Müll auf dem Bild entspricht dem Typ " +classes[predicted])
+            probability = torch.softmax(outputs.data, 1).cpu().numpy()[0]
+            print(probability)
+            maximum = 0
+            for u in range(0,6):
+                for i in range(0,6):
+                    if (probability[i] == max(probability)) :
+                        maximum = i
+                        break
+                    #print("Müll auf dem Bild entspricht zu " + "{0:.10f}".format(float(probability[maximum]*100)) + "% dem Typ " + classes[maximum])
+                out[u] = ("Muell auf dem Bild entspricht zu " + "{0:.10f}".format(float(probability[maximum]*100)) + "% dem Typ " + classes[maximum])
+                print(out[i])
+                print(i)
+                probability[maximum] = 0
+            js = {
+                    "0" : out[0] ,
+                    "1" : out[1],
+                    "2" : out[2],
+                    "3" : out[3],
+                    "4" : out[4],
+                    "5" : out[5]
+                }
+            
+            data = json.dumps(js)
+            file = open("./Output.json", "w")
+            file.write(data)
+            file.close()
+            jsonfile = 'Output.json'
+            with open(jsonfile,'r') as j:
+                data1 = json.loads(j.read())
+            
+            return data1
 
 if __name__=='__main__':
     cfg_port = os.getenv('PORT', "5000")
