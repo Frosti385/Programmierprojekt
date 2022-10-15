@@ -88,7 +88,7 @@ def upload_file():
                     return redirect('/upload')
         return "false"
 
-@app.route('/calculating')
+@app.route('/calc')
 def calculating():
 
     return render_template('calculating.html') 
