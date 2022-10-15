@@ -82,7 +82,7 @@ def upload_file():
                     global filename
                     filename = os.path.join(upload_dest, file.filename)
                     file.save(os.path.join(upload_dest, file.filename))
-                    return redirect('/calculating')
+                    return redirect('/calc')
                 else:
                     print('Wrong passcode')
                     return redirect('/upload')
@@ -103,8 +103,6 @@ def resultfunction():
         net = Net()
 
         model = torch.load('./models/epoch.93_95.max', map_location='cpu')
-       
-        
 
         transform = transforms.Compose(
             [transforms.ToPILImage(),
