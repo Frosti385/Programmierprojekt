@@ -27,10 +27,11 @@ Only after the build step is completed the deploy step begins
 ## How to use
 
 1. git clone https://github.com/Frosti385/Programmierprojekt.git
-1. pip install virtualenv
-1. python -m venv env
-1. .\evn\Scripts\activate
-1. pip3 install -r .\requirements.txt
+2. cd Programmierprojekt/website
+3. pip install virtualenv
+4. python -m venv env
+5. .\evn\Scripts\activate
+6. pip3 install -r .\requirements.txt
 
 ### Run API
 
