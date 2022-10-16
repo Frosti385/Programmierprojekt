@@ -7,7 +7,6 @@ from config import *
 from flask_restful import Api, Resource
 import requests 
 import json
-
 import torch
 import torchvision
 from torch.utils.data import Dataset

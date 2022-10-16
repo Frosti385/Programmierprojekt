@@ -17,20 +17,20 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        
+        pip install pylint
         pip install -r requirements.txt
-    #- name: Analysing the code with pylint
-      #run: |
-        #pylint $(git ls-files '*.py')
-         #pip install pylint
+    - name: Analysing the code with pylint
+      run: |
+      #pylint $(git ls-files '*.py')
+      
   deploy:
       runs-on: ubuntu-latest
       if: success() && github.ref_name == 'CICD'
       steps:
       - uses: actions/checkout@v3
-      - name: Deploying to Digitalocean droplet
+      - name: Deploying to private server
         uses: appleboy/ssh-action@master # An action made to control Linux servers
-        with: # We set all our secrets here for the action, these won't be shown in the action logs
+        with: 
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
