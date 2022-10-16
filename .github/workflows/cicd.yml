@@ -35,7 +35,7 @@ jobs:
 
   deploy:
       runs-on: ubuntu-latest
-      if: success() && github.ref_name == 'master'
+      if: success() 
       steps:
       - uses: actions/checkout@v3
       - name: Deploying to private server
