@@ -43,7 +43,6 @@ jobs:
           script: |
             cd Programmierprojekt # we move into our app's folder
             git pull # we pull any changes from git
-            git checkout CICD #only as long as this is not pushed to master
             pip install -r requirements.txt 
             cd website
             pm2 delete main # we reload the app 
