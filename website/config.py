@@ -10,4 +10,4 @@ app_key = '148'
 # full path destination for our upload files
 upload_dest = os.path.join(os.getcwd(), 'uploads') #os.getcwd() #
 # list of allowed allowed extensions
-extensions = set(['txt', 'pdf', 'png', 'tiff','gtiff'])
+extensions = set(['jpg', 'jpeg'])
