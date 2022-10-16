@@ -27,15 +27,16 @@ Only after the build step is completed the deploy step begins
 ## How to use
 
 1. git clone https://github.com/Frosti385/Programmierprojekt.git
-2. cd Programmierprojekt
-3. pip install virtualenv
-4. python -m venv env
-5. .\env\Scripts\activate
-6. pip install -r .\requirements.txt
+2. cd Programmierprojekt 
+3. cd website
+4. pip install virtualenv
+5. python -m venv env
+6..\env\Scripts\activate
+7. pip install -r .\requirements.txt
 
 ### Run API
 
-1. python website/main.py
+1. python main.py
 
 When the API starts, the pretrained network(resnet-152) and the trained epoch (model) with the accuracy of 95% are downloaded. The model is downloaded via web request (python package "requests") from the netcase server of the Hochschule Osnabrück because the file is to big for Github.
 
