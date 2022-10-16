@@ -30,8 +30,8 @@ Only after the build step is completed the deploy step begins
 2. cd Programmierprojekt/website
 3. pip install virtualenv
 4. python -m venv env
-5. .\evn\Scripts\activate
-6. pip3 install -r .\requirements.txt
+5. .\env\Scripts\activate
+6. pip install -r .\requirements.txt
 
 ### Run API
 
