@@ -1,5 +1,5 @@
 """
-Test implementation of a Restful API for Uploading Images 
+Test implementation of a Restful API for Uploading Images
 """
 import os
 import json
@@ -10,7 +10,8 @@ import requests
 import torch
 import torchvision
 from torch.utils.data import Dataset
-import torch.nn as nn
+#import torch.nn as nn
+from torch import nn
 from torchvision import transforms
 
 class TrashDataset(Dataset):
@@ -43,14 +44,14 @@ class Net(nn.Module):
 model = Net()
 
 URL = "https://netcase.hs-osnabrueck.de/index.php/s/hhmg0Df8GrrNlLo/download"
-response = requests.get(URL)
-open('./models/epoch.93_95.max', 'wb').write(response.content)
+with requests.get(URL) as response:
+    open('./models/epoch.93_95.max', 'wb').write(response.content)
 
 app = Flask(__name__)
 
 api =   Api(app)
 
-app.secret_key = app_key
+app.secret_key = APP_KEY
 
 @app.route('/')
 def index_form():
@@ -78,19 +79,19 @@ def upload_file():
         for file in files:
             if file:
                 if app.secret_key == user_code and file.mimetype in extensions:
-                    global filename
-                    filename = os.path.join(upload_dest, file.filename)
-                    file.save(os.path.join(upload_dest, file.filename))
+                    global FILENAME
+                    FILENAME = os.path.join(upload_dest, file.FILENAME)
+                    file.save(os.path.join(upload_dest, file.FILENAME))
                     return redirect('/calc')
-                else:
-                    print('Wrong passcode')
-                    return redirect('/upload')
-        return "false"
+            else:    
+                print('Wrong passcode')
+                return redirect('/upload')
+        
 
 @app.route('/calc')
 def calculating():
 
-    return render_template('calculating.html') 
+    return render_template('calculating.html')
 
 @app.route('/result', methods=['POST'])
 def resultfunction():
@@ -98,7 +99,7 @@ def resultfunction():
 
         out = ["","","","","",""]
         classes = ['Glas', 'Papier', 'Pappe', 'Plastik', 'Metall', 'Muell']
-        
+
         model = Net()
 
         model = torch.load('./models/epoch.93_95.max', map_location='cpu')
@@ -108,7 +109,7 @@ def resultfunction():
             transforms.Resize((224, 224)),
             transforms.ToTensor()])
 
-        try_image = transform(torchvision.io.read_image(filename))
+        try_image = transform(torchvision.io.read_image(FILENAME))
 
         model.eval()
 
@@ -121,11 +122,11 @@ def resultfunction():
             maximum = 0
             for j in range(0,6):
                 for i in range(0,6):
-                    if (probability[i] == max(probability)) :
+                    if probability[i] == max(probability):
                         maximum = i
                         break
-                    #print("Müll auf dem Bild entspricht zu " + "{0:.10f}".format(float(probability[maximum]*100)) + "% dem Typ " + classes[maximum])
-                out[j] = (f"Muell auf dem Bild entspricht zu " + "{0:.10f}".format(float(probability[maximum]*100)) + "% dem Typ " + classes[maximum])
+                out[j] = (f"Muell auf dem Bild entspricht zu " +
+                         "{0:.10f}".format(float(probability[maximum]*100)) + "% dem Typ " + classes[maximum])
                 probability[maximum] = 0
             js = {
                     "0" : out[0] ,

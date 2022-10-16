@@ -1,12 +1,12 @@
 '''
 Global arguments
 '''
-import os 
+import os
 
 # maximum filesize in megabytes
-file_mb_max = 100
+#file_mb_max = 100
 # encryption key
-app_key = '148'
+APP_KEY = '148'
 # full path destination for our upload files
 upload_dest = os.path.join(os.getcwd(), 'uploads') #os.getcwd() #
 # list of allowed allowed extensions
