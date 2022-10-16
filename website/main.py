@@ -36,16 +36,16 @@ class Net(nn.Module):
         super().__init__()
         self.network = torchvision.models.resnet152(pretrained=True)
         self.fc1 = nn.Linear(1000, 6)
-    def forward(self, x):
-        x = self.network(x)
-        x = self.fc1(x)
-        return x
+    def forward(self, x_variable):
+        x_variable = self.network(x_variable)
+        x_variable = self.fc1(x_variable)
+        return x_variable
 
 model = Net()
 
 URL = "https://netcase.hs-osnabrueck.de/index.php/s/hhmg0Df8GrrNlLo/download"
-with requests.get(URL) as response:
-    open('./models/epoch.93_95.max', 'wb').write(response.content)
+response = requests.get(URL)
+open('./models/epoch.93_95.max', 'wb').write(response.content)
 
 app = Flask(__name__)
 
@@ -80,13 +80,13 @@ def upload_file():
             if file:
                 if app.secret_key == user_code and file.mimetype in extensions:
                     global FILENAME
-                    FILENAME = os.path.join(upload_dest, file.FILENAME)
-                    file.save(os.path.join(upload_dest, file.FILENAME))
+                    FILENAME = os.path.join(upload_dest, file.filename)
+                    file.save(os.path.join(upload_dest, file.filename))
                     return redirect('/calc')
-            else:    
+            else:
                 print('Wrong passcode')
                 return redirect('/upload')
-        
+
 
 @app.route('/calc')
 def calculating():
@@ -126,7 +126,8 @@ def resultfunction():
                         maximum = i
                         break
                 out[j] = (f"Muell auf dem Bild entspricht zu " +
-                         "{0:.10f}".format(float(probability[maximum]*100)) + "% dem Typ " + classes[maximum])
+                          "{0:.10f}".format(float(probability[maximum]*100))
+                          + "% dem Typ " + classes[maximum])
                 probability[maximum] = 0
             js = {
                     "0" : out[0] ,
@@ -143,9 +144,9 @@ def resultfunction():
             file.close()
             jsonfile = 'Output.json'
             with open(jsonfile,'r') as j:
-                data = json.loads(j.read())
+                data_read = json.loads(j.read())
 
-            return data
+        return data_read
 
 if __name__=='__main__':
     cfg_port = os.getenv('PORT', "5000")
