@@ -10,13 +10,11 @@ Thanks to the pretrained network and tuning of this and the mapping network an a
 
 ## Project Management
 
-The project is implemented in three sprints. Management is carried out via Jira.
-TODO: Put link here
+The project is implemented in three sprints. Management is carried out via Jira. The link can be found in the Documentation handed out. 
 
 ## Access via Frontend
 
-The frontend of this application is available via
-TODO
+The frontend of this application is available via the given URL in the Documentation provided separately.
 
 ## Deployment
 
@@ -26,22 +24,9 @@ Both the linting and code validity is checked before doing so.
 
 Only after the build step is completed the deploy step begins
 
-The three relevant enpoints are as follows:
-
-TODO implement endpoint descriptions
-### This index html file
-
-URL to index
-
-### Upload page
-
-URL to upload
-
-
 ## How to use
-(The token is given separately)
 
-1. git clone https://github-token@github.com/Frosti385/Programmierprojekt.git
+1. git clone https://github.com/Frosti385/Programmierprojekt.git
 1. pip install virtualenv
 1. python -m venv env
 1. .\evn\Scripts\activate
